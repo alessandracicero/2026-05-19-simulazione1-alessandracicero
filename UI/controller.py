@@ -17,10 +17,26 @@ class Controller:
 
 
     def handleCreaGrafo(self, e):
-        pass
+        genere = self._view._ddGenre.value
+        self._model.buildGraph(genere)
+        nodi=self._model.getNodes()
+        archi=self._model.getARchi()
 
-    def handleCreaGrafo(self,e):
-        pass
+        listaTop=self._model.getOutput()
+
+        influ= self._model.getInf()
+
+        self._view.txt_result.controls.clear()
+        self._view.txt_result.controls.append(ft.Text(f"Grafo correttamente creato"))
+        self._view.txt_result.controls.append(ft.Text(f"Numero di nodi: {nodi}"))
+        self._view.txt_result.controls.append(ft.Text(f"Numero di archi: {archi}"))
+        self._view.txt_result.controls.append(ft.Text(f"Artista più influente: {influ[0]} con influenza {influ[1]}"))
+        self._view.txt_result.controls.append(ft.Text(f"Top 5 archi:", color= "red"))
+        for el in listaTop:
+            self._view.txt_result.controls.append(ft.Text(f"{el[0]}-->{el[1]}:{el[2]}"))
+
+        self._view.update_page()
+
 
     def handleCammino(self,e):
         pass
